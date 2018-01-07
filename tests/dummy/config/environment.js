@@ -17,6 +17,25 @@ module.exports = function(environment) {
       }
     },
 
+    // Ember Interactivity Options
+    interactivity: {
+      instrumentation: {
+        disableComponents: false,
+        disableLeafComponents: false,
+        disableRoutes: false
+      },
+      timelineMarking: {
+        disableComponents: false,
+        disableLeafComponents: false,
+        disableRoutes: false
+      },
+      tracking: {
+        disableComponents: false,
+        disableLeafComponents: false,
+        disableRoutes: false
+      }
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created

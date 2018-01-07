@@ -8,7 +8,7 @@ module.exports = {
     'ember'
   ],
   extends: [
-    'eslint:recommended', 
+    'eslint:recommended',
     'plugin:ember/recommended'
   ],
   env: {
@@ -27,8 +27,8 @@ module.exports = {
         'tests/dummy/config/**/*.js'
       ],
       parserOptions: {
-        sourceType: 'script',
-        ecmaVersion: 2015
+        sourceType: 'module',
+        ecmaVersion: 2017
       },
       env: {
         browser: false,

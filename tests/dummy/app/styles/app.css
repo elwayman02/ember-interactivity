@@ -1,0 +1,26 @@
+body {
+  text-align: center;
+}
+
+p {
+  padding-bottom: 5px;
+}
+
+.description {
+  margin: auto;
+  max-width: 500px;
+}
+
+.badges {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.badgeInner {
+  display: flex;
+}
+
+.badgeInner a {
+  margin-left: 5px;
+}
