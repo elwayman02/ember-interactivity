@@ -1,4 +1,5 @@
-# Ember Interactivity
+Ember Interactivity
+===================
 
 [![Build Status](https://travis-ci.org/elwayman02/ember-interactivity.svg?branch=master)](https://travis-ci.org/elwayman02/ember-interactivity)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-interactivity.svg)](https://emberobserver.com/addons/ember-interactivity)
@@ -12,7 +13,16 @@ that the application is ready for interaction.
 
 Check out the [Demo]()!
 
-## Usage
+Installation
+------------------------------------------------------------------------------
+
+```
+ember install ember-interactivity
+```
+
+
+Usage
+------------------------------------------------------------------------------
 
 Ember Interactivity requires developers to instrument routes and 
 critical components in order to report when they have completed rendering.
@@ -256,9 +266,9 @@ module.exports = function(environment) {
 
 TODO: Per-instance Overrides
 
-## Contribution
 
-This section outlines the details of collaborating on this Ember addon.
+Contributing
+------------------------------------------------------------------------------
 
 ### Installation
 
@@ -266,19 +276,25 @@ This section outlines the details of collaborating on this Ember addon.
 * `cd ember-interactivity`
 * `npm install`
 
-### Running
+### Linting
 
-* `ember s`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
 
-### Running Tests
+### Running tests
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+* `ember test` – Runs the test suite on the current Ember version
+* `ember test --server` – Runs the test suite in "watch mode"
+* `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
 
-### Building
+### Running the dummy application
 
-* `ember build`
+* `ember serve`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).
