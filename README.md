@@ -1,6 +1,8 @@
 Ember Interactivity
 ===================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/elwayman02/ember-interactivity.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/elwayman02/ember-interactivity.svg?branch=master)](https://travis-ci.org/elwayman02/ember-interactivity)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-interactivity.svg)](https://emberobserver.com/addons/ember-interactivity)
 [![Code Climate](https://codeclimate.com/github/elwayman02/ember-interactivity/badges/gpa.svg)](https://codeclimate.com/github/elwayman02/ember-interactivity)
