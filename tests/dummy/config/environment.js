@@ -17,6 +17,14 @@ module.exports = function(environment) {
       }
     },
 
+    metricsAdapters: [{
+      name: 'Mixpanel',
+      environments: ['all'],
+      config: {
+        token: '028ea13aa27ef5a62bb2fe1ef5d8cc1f'
+      }
+    }],
+
     // Ember Interactivity Options
     interactivity: {
       instrumentation: {
