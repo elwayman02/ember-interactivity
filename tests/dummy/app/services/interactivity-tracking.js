@@ -4,6 +4,10 @@ import InteractivityTrackingService from 'ember-interactivity/services/interacti
 export default InteractivityTrackingService.extend({
   metrics: service(),
 
+  trackComponent(data) {
+    this.get('metrics').trackEvent(data);
+  },
+
   trackRoute(data) {
     this.get('metrics').trackEvent(data);
   }

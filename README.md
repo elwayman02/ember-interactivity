@@ -214,7 +214,7 @@ isInteractive(didReportInteractive) {
 Ember Interactivity sends its events to the `interactivity-tracking` service. 
 Use this interface to implement your own integration points for sending data 
 to your favorite analytics service. For example, if you want to use [`ember-metrics`](https://github.com/poteto/ember-metrics) 
-to send route interactivity events to Mixpanel:
+to send interactivity events to Mixpanel:
 
 ```javascript
 // app/services/interactivity-tracking.js
@@ -223,6 +223,10 @@ import InteractivityTrackingService from 'ember-interactivity/services/interacti
 
 export default InteractivityTrackingService.extend({
   metrics: service(),
+
+  trackComponent(data) {
+    this.get('metrics').trackEvent('mixpanel', data);
+  }
 
   trackRoute(data) {
     this.get('metrics').trackEvent('mixpanel', data);
