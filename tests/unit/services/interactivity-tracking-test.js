@@ -1,8 +1,7 @@
 import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('service:interactivity-tracking', 'Unit | Service | interactivity tracking', {
-  // Specify the other units that are required for this test.
-  // needs: ['service:foo']
+  needs: ['service:metrics']
 });
 
 // Replace this with your real tests.
