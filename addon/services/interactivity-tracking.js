@@ -2,17 +2,17 @@ import Service from '@ember/service';
 import getConfig from 'ember-interactivity/utils/config';
 
 export default Service.extend({
-  trackComponent() {
+  trackComponent(/* data */) {
     if (this.isComponentInstrumentationDisabled()) {
       return;
     }
   },
 
-  trackRoute() {
+  trackRoute(/* data */) {
 
   },
 
-  error() {
+  trackError() {
 
   },
 

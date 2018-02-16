@@ -55,7 +55,7 @@ export default Mixin.create({
    */
   beforeModel(transition) {
     this.set('_latestTransition', transition);
-    this._sendTransitionEvent('validate', transition.targetName);
+    this._sendTransitionEvent('Initializing', transition.targetName);
     this._markTimeline(INITIALIZING_LABEL);
     return this._super(...arguments);
   },
@@ -82,7 +82,7 @@ export default Mixin.create({
       if (this.isDestroyed) { return; }
       if (this.get('_monitoringInteractivity')) {
         this.set('_monitoringInteractivity', false);
-        this.get('interactivityTracking').error(); // TODO: Add more information here
+        this.get('interactivityTracking').trackError(); // TODO: Add more information here
       }
     });
   },
@@ -104,7 +104,7 @@ export default Mixin.create({
     }
 
     let baseData = {
-      phase,
+      event: `route${phase}`,
       destination: targetName,
       routeName: this.get('routeName'),
       lostVisibility: this.get('documentVisibility.lostVisibility'),
@@ -127,15 +127,17 @@ export default Mixin.create({
         isAppLaunch: false
       };
     } else {
+      let time = getTimeAsFloat();
       data = {
         isAppLaunch: true,
-        timeFromFetch: (new Date().getTime()) - window.performance.timing.fetchStart,
+        timeElapsed: (time*1000) - window.performance.timing.fetchStart,
+        clientTime: time
       };
     }
 
     let routeName = this.get('routeName');
     this._markTimeline(INTERACTIVE_LABEL);
-    this._sendTransitionEvent('complete', routeName, data);
+    this._sendTransitionEvent('Interactive', routeName, data);
     hasFirstTransitionCompleted = true;
   },
 
@@ -148,7 +150,7 @@ export default Mixin.create({
   _sendTransitionExecuteEvent: on('activate', function () {
     let transition = this.get('_latestTransition');
     if (transition) {
-      this._sendTransitionEvent('execute', transition.targetName);
+      this._sendTransitionEvent('Activating', transition.targetName);
     }
   }),
 
@@ -237,7 +239,7 @@ export default Mixin.create({
       if (this._isLeafRoute()) {
         if (this.get('_monitoringInteractivity')) {
           this.set('_monitoringInteractivity', false);
-          this.get('interactivityTracking').error(); // User transitioned away from this route before completion (TODO: should this be an error?)
+          this.get('interactivityTracking').trackError(); // User transitioned away from this route before completion (TODO: should this be an error?)
         }
         this.get('interactivity').unsubscribeRoute();
       }

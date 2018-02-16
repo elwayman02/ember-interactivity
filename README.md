@@ -211,7 +211,119 @@ isInteractive(didReportInteractive) {
 
 ### Tracking
 
-~TODO~
+Ember Interactivity sends its events to the `interactivity-tracking` service. 
+Use this interface to implement your own integration points for sending data 
+to your favorite analytics service. For example, if you want to use [`ember-metrics`](https://github.com/poteto/ember-metrics) 
+to send interactivity events to Mixpanel:
+
+```javascript
+// app/services/interactivity-tracking.js
+import { inject as service } from '@ember/service';
+import InteractivityTrackingService from 'ember-interactivity/services/interactivity-tracking';
+
+export default InteractivityTrackingService.extend({
+  metrics: service(),
+
+  trackComponent(data) {
+    this.get('metrics').trackEvent('mixpanel', data);
+  }
+
+  trackRoute(data) {
+    this.get('metrics').trackEvent('mixpanel', data);
+  }
+});
+```
+
+The interface is simple; it just passes through a data object for 
+various events, and you can handle them however you like. All data will 
+include an `event` name as detailed below; you can map these strings to 
+whatever names you prefer for sending to your analytics service.
+
+#### trackRoute
+
+This method is called whenever a route interactivity event is triggered. 
+There are three possible events: `routeInitializing`, `routeActivating`, & `routeInitialized`
+
+These events are useful for segmenting your route latency numbers to know 
+if bottlenecks are caused by your APIs, the actual content rendering, or 
+some upstream app dependency (such as the CDN). Each `trackRoute` event 
+passes the following base data:
+
+* event - The name of the event (e.g. `routeInitializing`)
+* clientTime - The time the event occurred, formatted as a Float
+* destination - The destination route for the transition
+* routeName - The name of the route this event belongs to
+* lostVisibility - Whether or not the app lost visibility
+
+When `routeName` and `destination` are the same, you are on a leaf route 
+(as opposed to a parent route whose hooks trigger as part of the rendering process). 
+By default only leaf routes report interactivity, so while all routes will fire 
+`routeInitializing` & `routeActivating` events, only leaf routes 
+(or routes where `isInteractive` is defined) send `routeInitialized`.
+
+###### Visibility Tracking
+
+Ember Interactivity uses [`ember-is-visible`](https://github.com/elwayman02/ember-is-visible) 
+to track if the document loses visibility while the route is loading. This is 
+useful because the browser may de-optimize loading some part of your application 
+when a user switches tabs to another site. Using this data, we can identify events 
+where latency numbers may be increased due to visibility loss, as well as 
+track user behavior to know if they are frequently moving away from the site 
+while waiting for it to load.  
+
+##### routeInitializing
+
+This event is called from the `beforeModel` hook of your route and 
+indicates the beginning of each route's loading phases.
+
+##### routeActivating
+
+This event is called when the `activate` hook is triggered, after the model hooks complete. 
+This is the point at which the route will begin scheduling its rendering tasks.
+
+##### routeInteractive
+
+This event is called when the route reports itself as interactive, per the definitions 
+outlined above. In addition to the base data, two additional properties are added to this event:
+
+* isAppLaunch - Boolean indicating if the app is launching for first time 
+or if this is a transition from another route.
+* timeElapsed - This indicates the time (in milliseconds) that the route 
+took to become interactive since the initial browser fetch. Only included 
+if `isAppLaunch` is true.
+
+`timeElapsed` is usually your primary data point for tracking the load times of your routes.
+
+#### trackComponent
+
+This method is called whenever a component interactivity event is triggered. 
+There are two possible events: `componentInitializing` & `componentInteractive`
+
+Event data contains the following properties:
+
+* event - The name of the event (e.g. `componentInteractive`)
+* clientTime - The time the event occurred, formatted as a Float
+* component - The name of the component
+* componentId - A unique id for the component (to differentiate instances of the same component)
+
+The `componentInteractive` event adds an additional property:
+
+* timeElapsed - This indicates the time (in milliseconds) that the component 
+took to become interactive since it began initializing. 
+(Essentially subtracting the clientTimes for the two events)
+
+##### isComponentInstrumentationDisabled
+
+This method allows you to control whether components are instrumented in the application. 
+By default, it reads the configuration property [`tracking.disableComponents`](#Configuration), 
+but you can override the method to add custom logic for when to disable instrumentation.
+
+#### trackError (_Experimental_)
+
+This method is called whenever an error occurs in Ember Interactivity. 
+Currently, no data is sent along with an error; please file issues if you 
+have requests for data to include! `trackError` is only hooked up for routes 
+at the moment, such as when a user has transitioned away from the route before completion.
 
 ### Timeline Marking
 

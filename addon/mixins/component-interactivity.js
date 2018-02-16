@@ -195,11 +195,10 @@ export default Mixin.create({
       return;
     }
 
-    data = assign({
+    this.get('interactivityTracking').trackComponent(assign({
+      event: name,
       component: this.get('_latencyReportingName'),
       componentId: this.get('_latencySubscriptionId')
-    }, data);
-
-    this.get('interactivityTracking').trackComponent(name, data);
+    }, data));
   }
 });
