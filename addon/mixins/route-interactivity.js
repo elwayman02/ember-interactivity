@@ -1,3 +1,4 @@
+import { computed } from '@ember/object';
 import { on } from '@ember/object/evented';
 import Mixin from '@ember/object/mixin';
 import { assign } from '@ember/polyfills';
@@ -6,6 +7,7 @@ import { inject as injectService } from '@ember/service';
 import getConfig from 'ember-interactivity/utils/config';
 import { getTimeAsFloat } from 'ember-interactivity/utils/date';
 import { INITIALIZING_LABEL, INTERACTIVE_LABEL, markTimeline } from 'ember-interactivity/utils/timeline-marking';
+import { getOwner } from '@ember/application';
 
 let hasFirstTransitionCompleted = false;
 
@@ -21,6 +23,11 @@ export default Mixin.create({
   interactivity: injectService(),
   interactivityTracking: injectService(),
   visibility: injectService(),
+  fastboot: computed(function() {
+    let owner = getOwner(this);
+
+    return owner.lookup('service:fastboot');
+  }),
 
   /**
    * A route may implement the method isInteractive, which returns true if all conditions for interactivity have been met
@@ -189,6 +196,9 @@ export default Mixin.create({
    * @param {string} type - The event type
    */
   _markTimeline(type) {
+    if(this.get('fastboot') && this.get('fastboot.isFastBoot')) {
+      return;
+    }
     let options = getConfig(this);
 
     if ((options.timelineMarking && options.timelineMarking.disableRoutes) || !this._isLeafRoute()) {

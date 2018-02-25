@@ -12,6 +12,7 @@ import {
   getLatencyReportingName
 } from 'ember-interactivity/utils/interactivity';
 import { INITIALIZING_LABEL, INTERACTIVE_LABEL, markTimeline } from 'ember-interactivity/utils/timeline-marking';
+import { getOwner } from '@ember/application';
 
 /**
  * For components that should inform the interactivity service that they are now ready for user interaction.
@@ -21,6 +22,11 @@ import { INITIALIZING_LABEL, INTERACTIVE_LABEL, markTimeline } from 'ember-inter
 export default Mixin.create({
   interactivity: injectService(),
   interactivityTracking: injectService(),
+  fastboot: computed(function() {
+    let owner = getOwner(this);
+
+    return owner.lookup('service:fastboot');
+  }),
 
   /**
    * A component may implement the method isInteractive, which returns true if all conditions for interactivity have been met
@@ -172,6 +178,9 @@ export default Mixin.create({
    * @param {string} type - The event type
    */
   _markTimeline(type) {
+    if(this.get('fastboot') && this.get('fastboot.isFastBoot')) {
+      return;
+    }
     let options = getConfig(this);
     if (options.timelineMarking && (options.timelineMarking.disableComponents || (options.timelineMarking.disableLeafComponents && !this._isSubscriber()))) {
       return;
