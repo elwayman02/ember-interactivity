@@ -5,7 +5,7 @@ import Mixin from '@ember/object/mixin';
 import { assign } from '@ember/polyfills';
 import { bind } from '@ember/runloop';
 import { inject as injectService } from '@ember/service';
-import FastbootCompatMixin from 'ember-interactivity/mixins/fastboot-compat';
+import IsFastbootMixin from 'ember-is-fastboot/mixins/is-fastboot';
 import getConfig from 'ember-interactivity/utils/config';
 import { getTimeAsFloat } from 'ember-interactivity/utils/date';
 import {
@@ -19,7 +19,7 @@ import { INITIALIZING_LABEL, INTERACTIVE_LABEL, markTimeline } from 'ember-inter
  *
  * In your component, you MUST call `reportInteractive` or define `isInteractive`.
  */
-export default Mixin.create(FastbootCompatMixin, {
+export default Mixin.create(IsFastbootMixin, {
   interactivity: injectService(),
   interactivityTracking: injectService(),
 

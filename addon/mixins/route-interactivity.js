@@ -3,7 +3,7 @@ import Mixin from '@ember/object/mixin';
 import { assign } from '@ember/polyfills';
 import { bind, run } from '@ember/runloop';
 import { inject as injectService } from '@ember/service';
-import FastbootCompatMixin from 'ember-interactivity/mixins/fastboot-compat';
+import IsFastbootMixin from 'ember-is-fastboot/mixins/is-fastboot';
 import getConfig from 'ember-interactivity/utils/config';
 import { getTimeAsFloat } from 'ember-interactivity/utils/date';
 import { INITIALIZING_LABEL, INTERACTIVE_LABEL, markTimeline } from 'ember-interactivity/utils/timeline-marking';
@@ -18,7 +18,7 @@ let hasFirstTransitionCompleted = false;
  *   2.) execute  (i.e. we are executing the transition by activating the route and scheduling render tasks)
  *   3.) interactive (i.e. we have completed the transition and the route is now interactive)
  */
-export default Mixin.create(FastbootCompatMixin, {
+export default Mixin.create(IsFastbootMixin, {
   interactivity: injectService(),
   interactivityTracking: injectService(),
   visibility: injectService(),

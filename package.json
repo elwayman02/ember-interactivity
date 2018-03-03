@@ -24,6 +24,7 @@
   "dependencies": {
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
+    "ember-is-fastboot": "^0.1.1",
     "ember-is-visible": "^0.1.2"
   },
   "devDependencies": {
