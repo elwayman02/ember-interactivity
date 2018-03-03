@@ -5,6 +5,7 @@ import Mixin from '@ember/object/mixin';
 import { assign } from '@ember/polyfills';
 import { bind } from '@ember/runloop';
 import { inject as injectService } from '@ember/service';
+import IsFastbootMixin from 'ember-is-fastboot/mixins/is-fastboot';
 import getConfig from 'ember-interactivity/utils/config';
 import { getTimeAsFloat } from 'ember-interactivity/utils/date';
 import {
@@ -19,7 +20,7 @@ import { getOwner } from '@ember/application';
  *
  * In your component, you MUST call `reportInteractive` or define `isInteractive`.
  */
-export default Mixin.create({
+export default Mixin.create(IsFastbootMixin, {
   interactivity: injectService(),
   interactivityTracking: injectService(),
   fastboot: computed(function() {
@@ -182,7 +183,8 @@ export default Mixin.create({
       return;
     }
     let options = getConfig(this);
-    if (options.timelineMarking && (options.timelineMarking.disableComponents || (options.timelineMarking.disableLeafComponents && !this._isSubscriber()))) {
+    if (options.timelineMarking && (options.timelineMarking.disableComponents ||
+        (options.timelineMarking.disableLeafComponents && !this._isSubscriber())) || this.get('_isFastBoot')) {
       return;
     }
 
