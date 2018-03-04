@@ -67,6 +67,11 @@ HTML elements with no components.
 For better instrumentation, read how to utilize the 
 [isInteractive](#isInteractive) method.
 
+Note: The mixins in this addon rely on a number of lifecycle hooks, 
+such as beforeModel & didTransition. If you have any issues sending events, 
+please make sure you are calling `this._super(...arguments)` in your app when 
+utilizing these hooks.
+
 ### Components
 
 The `component-interactivity` mixin provides instrumentation for 
