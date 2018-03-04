@@ -81,7 +81,6 @@ export default Mixin.create(IsFastbootMixin, {
    */
   reportInteractive() {
     assert(`Do not invoke reportInteractive if isInteractive is defined: {{${this.get('_latencyReportingName')}}}`, !this._isSubscriber());
-    this.get('interactivity').didReporterBecomeInteractive(this);
     this._becameInteractive();
   },
 
