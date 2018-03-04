@@ -384,6 +384,91 @@ module.exports = function(environment) {
 
 TODO: Per-instance Overrides
 
+### Testing
+
+Ember Interactivity provides a number of test helpers to support testing your application's latency instrumentation.
+
+#### Mock Services
+
+Mock service instances are provided for your use. It is recommended to 
+register these mock services in each of the tests of your application.
+
+```javascript
+import MockInteractivityService from 'ember-interactivity/test-support/mock-interactivity-service';
+import MockInteractivityTrackingService from 'ember-interactivity/test-support/mock-interactivity-tracking-service';
+
+module('foo', 'Integration | Component | foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  hooks.beforeEach(function () {
+    this.owner.register('service:interactivity', MockInteractivityService);
+    this.owner.register('service:interactivity-tracking', MockInteractivityTrackingService);
+  });
+});
+```
+
+To avoid writing this for every test in your application, you can write 
+a wrapper around `module` that handles registering any mock services for your tests.
+
+#### Interactivity Assertions
+
+The `assert-interactivity` helper provides methods to test that your routes/components 
+are correctly reporting latency events when rendering. As your tests exercise 
+these modules, these assertions will confirm the interactivity events get sent. 
+This helper relies on the `MockInteractivityService` being registered.
+
+First, make the assertion available to your tests:
+
+```javascript
+// tests/test-helper.js
+import 'ember-interactivity/test-support/assert-interactivity';
+```
+
+Then, use the `trackInteractivity` assertion in your tests for routes and component subscribers:
+
+```javascript
+// tests/acceptance/foo.js
+import { module, test } from 'qunit';
+import { click, fillIn, visit } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
+
+module('Acceptance | foo', function(hooks) {
+  setupApplicationTest(hooks);
+
+  test('should report interactive', async function(assert) {
+    await visit('/foo');
+    assert.trackInteractivity('foo');
+  });
+});
+```
+
+Let's say you want to simulate some async behavior and make sure interactivity 
+conditions aren't being fulfilled prematurely. The `trackNonInteractivity` 
+assertion can be used to test this scenario:
+
+```javascript
+// tests/acceptance/foo.js
+import { module, test } from 'qunit';
+import { click, fillIn, visit } from '@ember/test-helpers';
+import { setupApplicationTest } from 'ember-qunit';
+
+module('Acceptance | foo', function(hooks) {
+  setupApplicationTest(hooks);
+  
+  hooks.beforeEach(function () {
+    this.resolveAsyncBehavior = () => {
+      // Do stuff to resolve interactivity conditions
+    };
+  });
+
+  test('should report interactive', async function(assert) {
+    await visit('/foo');
+    assert.trackNonInteractivity('foo');
+    this.resolveAsyncBehavior();
+    assert.trackInteractivity('foo');
+  });
+});
+```
 
 Contributing
 ------------------------------------------------------------------------------
