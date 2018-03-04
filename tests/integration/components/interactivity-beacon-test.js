@@ -1,24 +1,33 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module } from 'ember-qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { clearRender, render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+import test from 'ember-sinon-qunit/test-support/test';
+import MockInteractivityService from '../../helpers/mock-interactivity-service';
 
-moduleForComponent('interactivity-beacon', 'Integration | Component | interactivity beacon', {
-  integration: true
-});
+module('interactivity-beacon', 'Integration | Component | interactivity beacon', function (hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  hooks.beforeEach(function () {
+    this.owner.register('service:interactivity', MockInteractivityService);
+  });
 
-  this.render(hbs`{{interactivity-beacon}}`);
+  test('Beacon registers itself on render', async function (assert) {
+    assert.expect(5);
 
-  assert.equal(this.$().text().trim(), '');
+    let interactivityService = this.owner.__container__.lookup('service:interactivity');
+    let didReporterBecomeInteractiveSpy = this.spy(interactivityService, 'didReporterBecomeInteractive');
+    let didReporterBecomeNonInteractiveSpy = this.spy(interactivityService, 'didReporterBecomeNonInteractive');
 
-  // Template block usage:
-  this.render(hbs`
-    {{#interactivity-beacon}}
-      template block text
-    {{/interactivity-beacon}}
-  `);
+    this.set('beaconId', 'myBeaconId');
+    await render(hbs('{{interactivity-beacon beaconId=beaconId}}'));
 
-  assert.equal(this.$().text().trim(), 'template block text');
+    assert.ok(didReporterBecomeInteractiveSpy.calledOnce, 'beacon called didReporterBecomeInteractive on render');
+    assert.equal(didReporterBecomeInteractiveSpy.getCalls()[0].args[0].get('_latencyReportingName'), 'beacon:myBeaconId', 'beacon called didReporterBecomeInteractive with the correct arguments');
+    assert.notOk(didReporterBecomeNonInteractiveSpy.calledOnce, 'beacon has not called didReporterBecomeNonInteractive while rendered');
+
+    await clearRender();
+    assert.ok(didReporterBecomeNonInteractiveSpy.calledOnce, 'beacon called didReporterBecomeNonInteractive on unrender');
+    assert.equal(didReporterBecomeNonInteractiveSpy.getCalls()[0].args[0].get('_latencyReportingName'), 'beacon:myBeaconId', 'beacon called didReporterBecomeNonInteractive with the correct arguments');
+  });
 });
