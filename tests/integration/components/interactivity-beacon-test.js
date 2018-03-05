@@ -6,7 +6,7 @@ import test from 'ember-sinon-qunit/test-support/test';
 import MockInteractivityService from 'ember-interactivity/test-support/mock-interactivity-service';
 import MockInteractivityTrackingService from 'ember-interactivity/test-support/mock-interactivity-tracking-service';
 
-module('interactivity-beacon', 'Integration | Component | interactivity beacon', function (hooks) {
+module('Integration | Component | interactivity beacon', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {

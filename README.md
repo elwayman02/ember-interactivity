@@ -365,7 +365,7 @@ only want a feature enabled for subscribers (parent routes/components).
 
 ```javascript
 // config/environment.js
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ENV = {
     interactivity: {
       tracking: {
@@ -432,10 +432,10 @@ import { module, test } from 'qunit';
 import { click, fillIn, visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | foo', function(hooks) {
+module('Acceptance | foo', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('should report interactive', async function(assert) {
+  test('should report interactive', async function (assert) {
     await visit('/foo');
     assert.trackInteractivity('foo');
   });
@@ -452,7 +452,7 @@ import { module, test } from 'qunit';
 import { click, fillIn, visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | foo', function(hooks) {
+module('Acceptance | foo', function (hooks) {
   setupApplicationTest(hooks);
   
   hooks.beforeEach(function () {
@@ -461,7 +461,7 @@ module('Acceptance | foo', function(hooks) {
     };
   });
 
-  test('should report interactive', async function(assert) {
+  test('should report interactive', async function (assert) {
     await visit('/foo');
     assert.trackNonInteractivity('foo');
     this.resolveAsyncBehavior();
