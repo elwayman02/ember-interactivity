@@ -1,5 +1,6 @@
-import { on } from '@ember/object/evented';
+import Ember from 'ember';
 import Mixin from '@ember/object/mixin';
+import { on } from '@ember/object/evented';
 import { assign } from '@ember/polyfills';
 import { bind, run } from '@ember/runloop';
 import { inject as injectService } from '@ember/service';
@@ -99,8 +100,8 @@ export default Mixin.create(IsFastbootMixin, {
    * @param {object} data [Optional] - Data to send with the tracking event
    */
   _sendTransitionEvent(phase, targetName, data = {}) {
-    let options = getConfig(this);
-    if ((options.tracking && options.timelineMarking.disableRoutes) || !this._isLeafRoute()) {
+    let tracking = getConfig(this).tracking;
+    if (tracking && (tracking.disableRoutes || (tracking.disableParentRoutes && !this._isLeafRoute()))) {
       return;
     }
 
@@ -190,7 +191,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @param {string} type - The event type
    */
   _markTimeline(type) {
-    if(this.get('_isFastBoot')) {
+    if(Ember.testing || this.get('_isFastBoot')) {
       return;
     }
     let options = getConfig(this);
