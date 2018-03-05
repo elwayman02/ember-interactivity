@@ -362,6 +362,10 @@ Each feature can be configured for three subsets of the addon:
 (those that do not implement `isInteractive`). This is useful if you 
 only want a feature enabled for subscribers (parent routes/components).
 * `disableRoutes` - Set true to disable for all routes
+* `disableParentRoutes` - Set true to disable for all non-leaf routes 
+(those that are not the target of a transition). This is useful if you 
+aren't trying to identify bottlenecks in your route chain and just want 
+to collect latency numbers for each transition.
 
 ```javascript
 // config/environment.js

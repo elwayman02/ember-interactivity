@@ -40,7 +40,8 @@ module.exports = function(environment) {
       tracking: {
         disableComponents: false,
         disableLeafComponents: false,
-        disableRoutes: false
+        disableRoutes: false,
+        disableParentRoutes: false
       }
     },
 
