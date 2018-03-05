@@ -24,6 +24,18 @@ class InteractivitySubscriber {
   }
 
   /**
+   * Creates a promise to use for resolving interactivity conditions
+   *
+   * @method createPromise
+   */
+  createPromise() {
+    this.promise = new RSVP.Promise((resolve, reject) => {
+      this.resolve = resolve;
+      this.reject = reject;
+    });
+  }
+
+  /**
    * Checks if the subscriber is now interactive. If so, it resolves the pending promise.
    */
   checkInteractivity() {
@@ -103,10 +115,7 @@ export class ComponentInteractivitySubscriber extends InteractivitySubscriber {
     assert('Every subscriber must provide an isInteractive method', typeof(isInteractive) === 'function');
     super(...arguments);
     this.id = id;
-    this.promise = new RSVP.Promise((resolve, reject) => {
-      this.resolve = resolve;
-      this.reject = reject;
-    });
+    this.createPromise();
 
     // If the subscriber is already interactive, we should resolve immediately.
     this.checkInteractivity();
@@ -142,10 +151,7 @@ export class RouteInteractivitySubscriber extends InteractivitySubscriber {
     this.isActive = true;
     this.name = name;
     this._isInteractive = isInteractive;
-    this.promise = new RSVP.Promise((resolve, reject) => {
-      this.resolve = resolve;
-      this.reject = reject;
-    });
+    this.createPromise();
   }
 
   /**
