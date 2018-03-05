@@ -29,13 +29,13 @@ module.exports = function(environment) {
     interactivity: {
       instrumentation: {
         disableComponents: false,
-        disableLeafComponents: false,
-        disableRoutes: false
+        disableRoutes: false,
       },
       timelineMarking: {
         disableComponents: false,
         disableLeafComponents: false,
-        disableRoutes: false
+        disableRoutes: false,
+        disableParentRoutes: false
       },
       tracking: {
         disableComponents: false,

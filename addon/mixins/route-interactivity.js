@@ -100,8 +100,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @param {object} data [Optional] - Data to send with the tracking event
    */
   _sendTransitionEvent(phase, targetName, data = {}) {
-    let tracking = getConfig(this).tracking;
-    if (tracking && (tracking.disableRoutes || (tracking.disableParentRoutes && !this._isLeafRoute()))) {
+    if (this._isFeaturedDisabled('tracking')) {
       return;
     }
 
@@ -191,16 +190,16 @@ export default Mixin.create(IsFastbootMixin, {
    * @param {string} type - The event type
    */
   _markTimeline(type) {
-    if(Ember.testing || this.get('_isFastBoot')) {
-      return;
-    }
-    let options = getConfig(this);
-
-    if ((options.timelineMarking && options.timelineMarking.disableRoutes) || !this._isLeafRoute()) {
+    if(Ember.testing || this.get('_isFastBoot') || this._isFeaturedDisabled('timelineMarking')) {
       return;
     }
 
     markTimeline(type, bind(this, this._getTimelineLabel));
+  },
+
+  _isFeaturedDisabled(type) {
+    let option = getConfig(this)[type];
+    return option && (option.disableRoutes || (option.disableParentRoutes && !this._isLeafRoute()));
   },
 
   /**
@@ -209,7 +208,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @method _resetHasFirstTransitionCompleted
    * @private
    */
-  _resetHasFirstTransitionCompleted() { // TODO: Remove?
+  _resetHasFirstTransitionCompleted() {
     hasFirstTransitionCompleted = false;
   },
 

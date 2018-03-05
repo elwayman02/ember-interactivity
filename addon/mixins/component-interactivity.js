@@ -211,8 +211,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @returns {boolean} - True if the feature is disabled
    */
   _isFeaturedDisabled(type) {
-    let options = getConfig(this);
-    return options[type] && (options[type].disableComponents ||
-      (options[type].disableLeafComponents && !this._isSubscriber()))
+    let option = getConfig(this)[type];
+    return option && (option.disableComponents || (option.disableLeafComponents && !this._isSubscriber()));
   }
 });
