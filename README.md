@@ -351,11 +351,11 @@ or if you want to sample a percentage of your users to stay within data storage 
 
 Three features can be configured:
 
-* `instrumentation` - Toggle instrumentation altogether
+* `instrumentation` - Toggle instrumentation altogether (Note: Does not support leaf/parent configs below)
 * `timelineMarking` - Toggle marking the performance timeline
 * `tracking` - Toggle sending tracking events
 
-Each feature can be configured for three subsets of the addon:
+Each feature can be configured for four subsets of the addon:
 
 * `disableComponents` - Set true to disable for all components
 * `disableLeafComponents` - Set true to disable for child components 

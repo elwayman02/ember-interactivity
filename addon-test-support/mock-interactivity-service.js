@@ -9,12 +9,14 @@ export default InteractivityService.extend({
   },
 
   subscribeComponent(options) {
-    return this._super(...arguments).then(() => {
-      this._reportedSubscribers.push(options);
-    });
+    return this.addSubscriber(options);
   },
 
   subscribeRoute(options) {
+    return this.addSubscriber(options);
+  },
+
+  addSubscriber(options) {
     return this._super(...arguments).then(() => {
       this._reportedSubscribers.push(options);
     });

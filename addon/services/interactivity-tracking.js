@@ -9,7 +9,9 @@ export default Service.extend({
   },
 
   trackRoute(/* data */) {
-
+    if (this.isRouteInstrumentationDisabled()) {
+      return;
+    }
   },
 
   trackError() {
@@ -20,5 +22,11 @@ export default Service.extend({
     let options = getConfig(this);
 
     return options.instrumentation && options.instrumentation.disableComponents;
+  },
+
+  isRouteInstrumentationDisabled() {
+    let options = getConfig(this);
+
+    return options.instrumentation && options.instrumentation.disableRoutes;
   }
 });

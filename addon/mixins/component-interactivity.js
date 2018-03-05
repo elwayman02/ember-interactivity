@@ -173,12 +173,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @param {string} type - The event type
    */
   _markTimeline(type) {
-    if(Ember.testing || this.get('_isFastBoot')) {
-      return;
-    }
-    let options = getConfig(this);
-    if (options.timelineMarking && (options.timelineMarking.disableComponents ||
-        (options.timelineMarking.disableLeafComponents && !this._isSubscriber()))) {
+    if(Ember.testing || this.get('_isFastBoot') || this._isFeaturedDisabled('timelineMarking')) {
       return;
     }
 
@@ -195,8 +190,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @param {object} data - Data attributes for the event
    */
   _sendEvent(name, data = {}) {
-    let options = getConfig(this);
-    if (options.tracking && (options.tracking.disableComponents || (options.tracking.disableLeafComponents && !this._isSubscriber()))) {
+    if (this._isFeaturedDisabled('tracking')) {
       return;
     }
 
@@ -205,5 +199,19 @@ export default Mixin.create(IsFastbootMixin, {
       component: this.get('_latencyReportingName'),
       componentId: this.get('_latencySubscriptionId')
     }, data));
+  },
+
+  /**
+   * Check to see if a feature has been disabled by the app config
+   *
+   * @method _isFeatureDisabled
+   * @private
+   *
+   * @param {string} type - The name of the feature being checked
+   * @returns {boolean} - True if the feature is disabled
+   */
+  _isFeaturedDisabled(type) {
+    let option = getConfig(this)[type];
+    return option && (option.disableComponents || (option.disableLeafComponents && !this._isSubscriber()));
   }
 });
