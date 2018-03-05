@@ -5,7 +5,7 @@ import EmberObject from '@ember/object';
 
 let service;
 
-module('Unit | Service | interactivity', function(hooks) {
+module('Unit | Service | interactivity', function (hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function () {

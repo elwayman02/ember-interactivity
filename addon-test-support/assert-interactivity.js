@@ -9,7 +9,7 @@ function _getOwner() {
   return getOwner(context) || context.owner;
 }
 
-QUnit.assert.trackNonInteractivity = function(subscriberName) {
+QUnit.assert.trackNonInteractivity = function (subscriberName) {
   let service = _getOwner().lookup('service:interactivity');
 
   let reported = service._reportedSubscribers.findBy('name', subscriberName);
@@ -22,7 +22,7 @@ QUnit.assert.trackNonInteractivity = function(subscriberName) {
   });
 };
 
-QUnit.assert.trackInteractivity = function(subscriberName, { count }={}) {
+QUnit.assert.trackInteractivity = function (subscriberName, { count }={}) {
   let service = _getOwner().lookup('service:interactivity');
 
   let reported = service._reportedSubscribers.filter((subscriber) => {
