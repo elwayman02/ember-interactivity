@@ -100,7 +100,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @param {object} data [Optional] - Data to send with the tracking event
    */
   _sendTransitionEvent(phase, targetName, data = {}) {
-    if (this._isFeaturedDisabled('tracking')) {
+    if (this.get('_isFastBoot') || this._isFeaturedDisabled('tracking')) {
       return;
     }
 
@@ -122,6 +122,10 @@ export default Mixin.create(IsFastbootMixin, {
    * @private
    */
   _sendTransitionCompleteEvent() {
+    if (this.get('_isFastBoot')) {
+      return;
+    }
+
     let data;
     if (hasFirstTransitionCompleted) {
       data = {

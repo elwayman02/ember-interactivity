@@ -190,7 +190,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @param {object} data - Data attributes for the event
    */
   _sendEvent(name, data = {}) {
-    if (this._isFeaturedDisabled('tracking')) {
+    if (this.get('_isFastBoot') || this._isFeaturedDisabled('tracking')) {
       return;
     }
 
