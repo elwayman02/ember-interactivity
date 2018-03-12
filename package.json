@@ -61,6 +61,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://jhawk.co/ember-interactivity-demo"
+    "demoURL": "http://jhawk.co/interactivity-demo"
   }
 }

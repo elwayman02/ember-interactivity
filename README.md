@@ -12,7 +12,7 @@ in order to improve the user's perception application speed. We define
 *Time to Interactivity* to be the time it takes for the user to perceive 
 that the application is ready for interaction.
 
-Check out the [Demo]()!
+Check out the [Demo](http://jhawk.co/interactivity-demo)!
 
 Installation
 ------------------------------------------------------------------------------
