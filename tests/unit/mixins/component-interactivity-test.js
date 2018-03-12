@@ -4,6 +4,7 @@ import test from 'ember-sinon-qunit/test-support/test';
 import RSVP from 'rsvp';
 import EmberObject from '@ember/object';
 import Service from '@ember/service';
+import { setOwner } from '@ember/application';
 import { sendEvent as send } from '@ember/object/events';
 import ComponentInteractivityMixin from 'ember-interactivity/mixins/component-interactivity';
 import MockInteractivityTrackingService from 'ember-interactivity/test-support/mock-interactivity-tracking-service';
@@ -33,6 +34,7 @@ module('Unit | Mixin | component interactivity', function (hooks) {
   test('_latencyReportingName', function (assert) {
     assert.expect(1);
     let subject = this.BaseObject.create();
+    setOwner(subject, this.owner);
     let id = subject.get('_latencyReportingName');
 
     assert.equal(id, COMPONENT_NAME, 'latencyReportingName pulls the component name from toString');
@@ -41,6 +43,7 @@ module('Unit | Mixin | component interactivity', function (hooks) {
   test('didReporterBecomeInteractive fires when reportInteractive is called', function (assert) {
     assert.expect(2);
     let subject = this.BaseObject.create();
+    setOwner(subject, this.owner);
     let interactivity = subject.get('interactivity');
 
     let stub = this.stub(interactivity, 'didReporterBecomeInteractive');
@@ -54,6 +57,7 @@ module('Unit | Mixin | component interactivity', function (hooks) {
   test('didReporterBecomeNonInteractive fires when reportNonInteractive is called', function (assert) {
     assert.expect(2);
     let subject = this.BaseObject.create();
+    setOwner(subject, this.owner);
     let interactivity = subject.get('interactivity');
 
     let stub = this.stub(interactivity, 'didReporterBecomeNonInteractive');
@@ -67,6 +71,7 @@ module('Unit | Mixin | component interactivity', function (hooks) {
   test('didReporterBecomeNonInteractive fires automatically on willDestroyElement', function (assert) {
     assert.expect(2);
     let subject = this.BaseObject.create();
+    setOwner(subject, this.owner);
     let interactivity = subject.get('interactivity');
 
     let stub = this.stub(interactivity, 'didReporterBecomeNonInteractive');
@@ -80,6 +85,7 @@ module('Unit | Mixin | component interactivity', function (hooks) {
   test('monitors child components if isInteractive is defined', function (assert) {
     assert.expect(1);
     let subject = this.BaseObject.create({ isInteractive() {} });
+    setOwner(subject, this.owner);
     let interactivity = subject.get('interactivity');
     let promise = RSVP.Promise.resolve(null, 'test subscribeComponent promise');
     let stub = this.stub(interactivity, 'subscribeComponent').returns(promise);
@@ -91,6 +97,7 @@ module('Unit | Mixin | component interactivity', function (hooks) {
   test('stops monitoring when it is destroyed', function (assert) {
     assert.expect(1);
     let subject = this.BaseObject.create({ isInteractive() {} });
+    setOwner(subject, this.owner);
     let interactivity = subject.get('interactivity');
     let stub = this.stub(interactivity, 'unsubscribeComponent');
 

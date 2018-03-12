@@ -5,6 +5,7 @@ import { waitUntil } from '@ember/test-helpers';
 import RSVP from 'rsvp';
 import EmberObject from '@ember/object';
 import Service from '@ember/service';
+import { setOwner } from '@ember/application';
 import { run } from '@ember/runloop';
 import RouteInteractivityMixin from 'ember-interactivity/mixins/route-interactivity';
 import MockInteractivityTrackingService from 'ember-interactivity/test-support/mock-interactivity-tracking-service';
@@ -47,6 +48,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
     let transition = { targetName: ROUTE_NAME };
 
     let subject = this.BaseObject.create();
+    setOwner(subject, this.owner);
     let isLeafRoute = subject._isLeafRoute(transition);
 
     assert.ok(isLeafRoute, 'correctly identifies leaf route');
@@ -56,6 +58,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
     let transition = { targetName: 'stuff.things' };
 
     let subject = this.BaseObject.create();
+    setOwner(subject, this.owner);
     let isLeafRoute = subject._isLeafRoute(transition);
 
     assert.notOk(isLeafRoute, 'correctly identifies non-leaf route');
@@ -67,6 +70,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
     let subject = this.BaseObject.create({
       _latestTransition: transition
     });
+    setOwner(subject, this.owner);
     let isLeafRoute = subject._isLeafRoute();
 
     assert.ok(isLeafRoute, 'correctly identifies leaf route');
@@ -77,6 +81,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
     let subject = this.BaseObject.create({
       _latestTransition: transition
     });
+    setOwner(subject, this.owner);
 
     let isLeafRoute = subject._isLeafRoute();
 
@@ -89,6 +94,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
     let subject = this.BaseObject.create({
       _latestTransition: transition
     });
+    setOwner(subject, this.owner);
 
     let phase = 'Yarrr';
     let targetName = 'Narf';
@@ -114,6 +120,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
     let subject = this.BaseObject.create({
       isInteractive() {}
     });
+    setOwner(subject, this.owner);
     let interactivity = subject.get('interactivity');
 
     let spy = this.spy(interactivity, 'subscribeRoute');
@@ -142,6 +149,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
     assert.expect(1);
 
     let subject = this.BaseObject.create();
+    setOwner(subject, this.owner);
 
     subject._monitorInteractivity();
 
@@ -159,6 +167,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
 
   test('didTransition - not leaf route', function (assert) {
     let subject = this.BaseObject.create();
+    setOwner(subject, this.owner);
     let stub = this.stub(subject, '_isLeafRoute').callsFake(() => false);
 
     let result = subject.actions.didTransition.call(subject);
@@ -171,6 +180,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
     let stub = this.stub(run, 'scheduleOnce');
 
     let subject = this.BaseObject.create();
+    setOwner(subject, this.owner);
     this.stub(subject, '_isLeafRoute').callsFake(() => true);
 
     subject.actions.didTransition.call(subject);
@@ -186,6 +196,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
     let subject = this.BaseObject.create({
       isInteractive() {}
     });
+    setOwner(subject, this.owner);
     this.stub(subject, '_isLeafRoute').callsFake(() => true);
 
     let stub = this.stub(subject, '_monitorInteractivity');
@@ -197,6 +208,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
 
   test('_sendTransitionCompleteEvent', function (assert) {
     let subject = this.BaseObject.create();
+    setOwner(subject, this.owner);
     let sendTransitionStub = this.stub(subject, '_sendTransitionEvent');
 
     subject._resetHasFirstTransitionCompleted();
