@@ -3,7 +3,7 @@
  *
  * @method getTimeAsFloat
  *
- * @returns {number} Current time
+ * @return {number} Current time
  */
 export function getTimeAsFloat() {
   return new Date().getTime() / 1000;

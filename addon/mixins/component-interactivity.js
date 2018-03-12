@@ -32,7 +32,7 @@ export default Mixin.create(IsFastbootMixin, {
    *
    * @method isInteractive
    * @param {function} didReportInteractive - Method that takes a reporter name and returns whether it is interactive
-   * @returns {boolean} True if all interactivity conditions have been met
+   * @return {boolean} True if all interactivity conditions have been met
    */
   isInteractive: null,
 
@@ -144,7 +144,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @method _isSubscriber
    * @private
    *
-   * @returns {boolean} Subscriber status
+   * @return {boolean} Subscriber status
    */
   _isSubscriber() {
     return !!this.isInteractive;
@@ -157,7 +157,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @private
    *
    * @param {string} type - The type of label being created
-   * @returns {string} The timeline label
+   * @return {string} The timeline label
    */
   _getTimelineLabel(type) { // BUG: Components that have "component" in their name will not have a unique label, due to the parsing logic below
     let latencyId = this.get('_latencySubscriptionId').split('component:')[1].slice(0, -1); // Make the component name more readable but still unique
@@ -208,7 +208,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @private
    *
    * @param {string} type - The name of the feature being checked
-   * @returns {boolean} - True if the feature is disabled
+   * @return {boolean} - True if the feature is disabled
    */
   _isFeaturedDisabled(type) {
     let option = getConfig(this)[type];

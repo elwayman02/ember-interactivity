@@ -85,7 +85,7 @@ class InteractivitySubscriber {
    * @param {string} name - Name of a reporter
    * @param {object} options - Options for modifying the check
    *    {number} count - If provided, expects a reporter to have become interactive exactly this many times
-   * @returns {boolean} - Whether or not the reporter is currently interactive
+   * @return {boolean} - Whether or not the reporter is currently interactive
    */
   _didReportInteractive(name, options) {
     if (options && options.count) {

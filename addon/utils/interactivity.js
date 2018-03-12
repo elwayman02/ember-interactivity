@@ -14,7 +14,7 @@
  * @method getLatencyReportingName
  *
  * @param {Ember.Component} component - An Ember Component
- * @returns {string} The name of the component
+ * @return {string} The name of the component
  */
 
 export function getLatencyReportingName(component) {
@@ -28,7 +28,7 @@ export function getLatencyReportingName(component) {
  * @method getLatencySubscriptionId
  *
  * @param {Ember.Component} component - An Ember Component
- * @returns {string} The unique id of the component
+ * @return {string} The unique id of the component
  */
 export function getLatencySubscriptionId(component) {
   return component.toString();

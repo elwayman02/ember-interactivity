@@ -32,7 +32,7 @@ export default Mixin.create(IsFastbootMixin, {
    *
    * @method isInteractive
    * @param {function} didReportInteractive - Method that takes a reporter name and returns whether it is interactive
-   * @returns {boolean} True if all interactivity conditions have been met
+   * @return {boolean} True if all interactivity conditions have been met
    */
   isInteractive: null,
 
@@ -166,7 +166,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @private
    *
    * @param {object} transition - http://emberjs.com/api/classes/Transition.html
-   * @returns {boolean} True if this route is the target of the current transition
+   * @return {boolean} True if this route is the target of the current transition
    */
   _isLeafRoute(transition = this.get('_latestTransition')) {
     return transition && transition.targetName === this.get('routeName');
@@ -179,7 +179,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @private
    *
    * @param {string} type - The type of label being created
-   * @returns {string} The timeline label
+   * @return {string} The timeline label
    */
   _getTimelineLabel(type) {
     return `Route ${type}: ${this.get('routeName')}`;
@@ -222,7 +222,7 @@ export default Mixin.create(IsFastbootMixin, {
      *
      * @method didTransition
      *
-     * @returns {boolean} Bubble the action unless a lower-order action stopped bubbling
+     * @return {boolean} Bubble the action unless a lower-order action stopped bubbling
      */
     didTransition() {
       if (this._isLeafRoute()) {
@@ -241,7 +241,7 @@ export default Mixin.create(IsFastbootMixin, {
      *
      * @method willTransition
      *
-     * @returns {boolean} Bubble the action unless a lower-order action stopped bubbling
+     * @return {boolean} Bubble the action unless a lower-order action stopped bubbling
      */
     willTransition() {
       if (this._isLeafRoute()) {

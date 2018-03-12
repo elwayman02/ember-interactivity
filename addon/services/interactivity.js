@@ -48,7 +48,7 @@ export default Service.extend({
    * @param {object} options - Single configuration parameter that expects the following attributes:
    *    {string} id - Unique component id
    *    {function} isInteractive - Method for checking interactivity conditions as reports come in
-   * @returns {RSVP.Promise} Resolves when interactivity conditions are met
+   * @return {RSVP.Promise} Resolves when interactivity conditions are met
    */
   subscribeComponent({ id, isInteractive }) {
     let subscriber = new ComponentInteractivitySubscriber({
@@ -78,7 +78,7 @@ export default Service.extend({
    * @param {object} options - Single configuration parameter that expects the following attributes:
    *    {string} name - The name of the subscriber (used in testing) // TODO: Still needed?
    *    {function} isInteractive - Method for checking interactivity conditions as reports come in
-   * @returns {RSVP.Promise} Resolves when interactivity conditions are met
+   * @return {RSVP.Promise} Resolves when interactivity conditions are met
    */
   subscribeRoute(options) {
     this.unsubscribeRoute();
@@ -102,7 +102,7 @@ export default Service.extend({
    * @method subscriberFor
    *
    * @param {Ember.Component} reporter - The component reporting interactivity
-   * @returns {ComponentInteractivitySubscriber|RouteInteractivitySubscriber} The parent subscriber
+   * @return {ComponentInteractivitySubscriber|RouteInteractivitySubscriber} The parent subscriber
    */
   subscriberFor(reporter) {
     let componentSubscriber = this._findParentSubscriber(reporter);
@@ -149,7 +149,7 @@ export default Service.extend({
    * @private
    *
    * @param {Ember.Component} child - The child component
-   * @returns {ComponentInteractivitySubscriber|undefined} The parent subscriber, if it exists
+   * @return {ComponentInteractivitySubscriber|undefined} The parent subscriber, if it exists
    */
   _findParentSubscriber(child) {
     let parentId, parentName;
