@@ -1,26 +1,18 @@
-body {
-  text-align: center;
-}
-
-p {
+.description p {
   padding-bottom: 5px;
 }
 
-.description {
-  margin: auto;
-  max-width: 500px;
+.version {
+  padding-bottom: 0;
 }
 
 .badges {
-  align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 550px;
 }
 
-.badgeInner {
-  display: flex;
-}
-
-.badgeInner a {
-  margin-left: 5px;
+.screenshot {
+  width: 100%;
 }
