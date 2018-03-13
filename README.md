@@ -12,6 +12,15 @@ in order to improve the user's perception application speed. We define
 *Time to Interactivity* to be the time it takes for the user to perceive 
 that the application is ready for interaction.
 
+Ember Interactivity allows us to generate latency metrics tailored to this definition; 
+specifically, by identifying the critical components required to render a parent 
+route or component, we can track load times and identify bottlenecks that are 
+critical to the user experience. By focusing on perceived load times, we are 
+able to reduce user bounce rates and churn through making the content appear to 
+load faster. Some strategies for this involve adding placeholders for necessarily 
+long content wait times, but often there is plenty of low-hanging fruit to make 
+actual improvements if we have the proper instrumentation to locate these issues.
+
 Check out the [Demo](http://jhawk.co/interactivity-demo)!
 
 Installation
