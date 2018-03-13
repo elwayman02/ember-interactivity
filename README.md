@@ -363,7 +363,7 @@ standard. DevTools such as the [Chrome Timeline](https://developers.google.com/w
 can display the timings for easy visualization of the critical rendering waterfall. 
 This can help developers identify bottlenecks for optimizing time to interactivity.
 
-![Component Waterfall](docs/component-waterfall.png)
+![Component Waterfall](docs/waterfall.png)
 
 Note: It's important to realize that in some cases, components you may not have
 considered to be critical are creating rendering bottlenecks in your application. 
