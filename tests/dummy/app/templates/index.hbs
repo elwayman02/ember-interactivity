@@ -32,9 +32,25 @@
 <div class="docs-container">
   <div class="description">
     <p>
+      Using Google's <a href="https://developers.google.com/web/fundamentals/performance/rail#load" target="_blank">RAIL model</a>,
+      we learn to focus on the more critical aspects of a page or component
+      in order to improve the user's perception application speed. We define
+      <strong>Time to Interactivity</strong> to be the time it takes for the user to perceive
+      that the application is ready for interaction.
+
+      Ember Interactivity allows us to generate latency metrics tailored to this definition;
+      specifically, by identifying the critical components required to render a parent
+      route or component, we can track load times and identify bottlenecks that are
+      critical to the user experience. By focusing on perceived load times, we are
+      able to reduce user bounce rates and churn through making the content appear to
+      load faster. Some strategies for this involve adding placeholders for necessarily
+      long content wait times, but often there is plenty of low-hanging fruit to make
+      actual improvements if we have the proper instrumentation to locate these issues.
+    </p>
+    <p>
       Try
       <a href="https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference" target="_blank">Performance Profiling</a>
-      in Chrome DevTools to see the route & components below show up under "User Timing"!
+      in Chrome DevTools to see the route & components below show up under "User Timing":
     </p>
     <img class="screenshot" src="assets/demo-waterfall.png"/>
   </div>
