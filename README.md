@@ -23,6 +23,22 @@ actual improvements if we have the proper instrumentation to locate these issues
 
 Check out the [Demo](http://jhawk.co/interactivity-demo)!
 
+Table of Contents
+------------------------------------------------------------------------------
+
+* [Installation](#Installation)
+* [Usage](#usage)
+    * [Routes](#routes)
+    * [Components](#components)
+    * [isInteractive](#isinteractive)
+    * [Beacons](#beacons)
+    * [Tracking](#tracking)
+    * [Timeline Marking](#timeline-marking)
+    * [Configuration](#configuration)
+    * [Testing](#testing)
+* [Contributing](#contributing)
+* [License](#license)
+
 Installation
 ------------------------------------------------------------------------------
 
@@ -37,7 +53,7 @@ Usage
 Ember Interactivity requires developers to instrument routes and 
 critical components in order to report when they have completed rendering.
 
-### Route Instrumentation
+### Routes
 
 The `route-interactivity` mixin provides instrumentation for 
 route latency. This can be added to all routes:
@@ -347,8 +363,10 @@ standard. DevTools such as the [Chrome Timeline](https://developers.google.com/w
 can display the timings for easy visualization of the critical rendering waterfall. 
 This can help developers identify bottlenecks for optimizing time to interactivity.
 
-Note: It's important to realize that in some cases, components you may not 
-consider to be critical are creating rendering bottlenecks in your application. 
+![Component Waterfall](docs/waterfall.png)
+
+Note: It's important to realize that in some cases, components you may not have
+considered to be critical are creating rendering bottlenecks in your application. 
 Look for suspicious gaps in the rendering visualization to identify these situations.
 
 ### Configuration

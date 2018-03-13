@@ -1,36 +1,45 @@
-<p class="description">This addon provides latency instrumentation for Ember applications!</p>
+{{#docs-hero
+  slimHeading='Ember'
+  strongHeading='Interactivity'
+  byline='Latency Metrics for User-Perceived Load Times'
+  yieldMultiple=true
+  as |yieldType|
+}}
+  {{#if yieldType.isLogo}}
+    <span class='docs-hero__logo'>
+      {{docs-logo logo='ember'}}
+    </span>
+  {{else if yieldType.isBottom}}
+    <span class="badges">
+      <a href="https://travis-ci.org/elwayman02/ember-interactivity" target="_blank">
+        <img src="https://travis-ci.org/elwayman02/ember-interactivity.svg?branch=master" />
+      </a>
+      <a href="https://emberobserver.com/addons/ember-interactivity" target="_blank">
+        <img src="https://emberobserver.com/badges/ember-interactivity.svg" />
+      </a>
+      <a href="https://codeclimate.com/github/elwayman02/ember-interactivity" target="_blank">
+        <img src="https://codeclimate.com/github/elwayman02/ember-interactivity/badges/gpa.svg" />
+      </a>
+      <a href="https://greenkeeper.io/" target="_blank">
+        <img src="https://badges.greenkeeper.io/elwayman02/ember-interactivity.svg" />
+      </a>
+    </span>
 
-<span class="badges">
-  <span class="badgeInner">
-    <a href="https://travis-ci.org/elwayman02/ember-interactivity" target="_blank">
-      <img src="https://travis-ci.org/elwayman02/ember-interactivity.svg?branch=master" />
-    </a>
-    <a href="https://emberobserver.com/addons/ember-interactivity" target="_blank">
-      <img src="https://emberobserver.com/badges/ember-interactivity.svg" />
-    </a>
-    <a href="https://codeclimate.com/github/elwayman02/ember-interactivity" target="_blank">
-      <img src="https://codeclimate.com/github/elwayman02/ember-interactivity/badges/gpa.svg" />
-    </a>
-    <a href="https://greenkeeper.io/" target="_blank">
-      <img src="https://badges.greenkeeper.io/elwayman02/ember-interactivity.svg" />
-    </a>
-  </span>
-</span>
+    <p class="version">Version {{app-version hideSha=true}}</p>
+  {{/if}}
+{{/docs-hero}}
 
-<p>This demo is running version {{app-version}}</p>
+<div class="docs-container">
+  <div class="description">
+    <p>
+      Try
+      <a href="https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference" target="_blank">Performance Profiling</a>
+      in Chrome DevTools to see the route & components below show up under "User Timing"!
+    </p>
+    <img class="screenshot" src="assets/demo-waterfall.png"/>
+  </div>
 
-<p>
-  Try
-  <a href="https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/reference" target="_blank">
-    Performance Profiling
-  </a>
-  in Chrome DevTools to see the route & components below show up under "User Timings"!
-</p>
+  <hr>
 
-<p>
-  See the full documentation <a href="https://github.com/elwayman02/ember-interactivity/blob/master/README.md" target="_blank">here</a>.
-</p>
-
-<hr>
-
-{{parent-interactivity}}
+  {{parent-interactivity}}
+</div>
