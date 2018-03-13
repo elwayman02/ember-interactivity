@@ -23,6 +23,11 @@ actual improvements if we have the proper instrumentation to locate these issues
 
 Check out the [Demo](http://jhawk.co/interactivity-demo)!
 
+Want to see this addon used in a real application?
+
+[www.JordanHawker.com](https://www.jordanhawker.com/) 
+is open-source, so you can see examples of how to use the features outlined below.
+
 Table of Contents
 ------------------------------------------------------------------------------
 
@@ -56,7 +61,7 @@ critical components in order to report when they have completed rendering.
 ### Routes
 
 The `route-interactivity` mixin provides instrumentation for 
-route latency. This can be added to all routes:
+route latency. This can be added to [all routes](https://github.com/elwayman02/jordan-hawker/blob/master/app/ext/route.js):
 
 ```javascript
 // ext/route.js
@@ -106,10 +111,9 @@ instrument each top-level component's critical children as well. Non-critical
 components can also be instrumented to understand their own latency, 
 even if they are not critical for a route or parent component to render.
 
-Like routes above, we can implement a basic instrumentation strategy via 
-the `afterRender` queue. If a component renders only basic HTML elements 
-and does not depend on any asynchronous behavior to render, this is an 
-ideal approach: 
+Like routes above, we can implement a [basic instrumentation strategy](https://github.com/elwayman02/jordan-hawker/blob/master/app/components/dj-bio.js#L10) 
+via the `afterRender` queue. If a component renders only basic HTML elements 
+and does not depend on any asynchronous behavior to render, this is an ideal approach: 
 
 ```handlebars
 // templates/components/foo-bar.hbs
@@ -158,8 +162,8 @@ read how to utilize the [isInteractive](#isInteractive) method.
 In order to instrument latency more accurately, we define the list of 
 components we expect to report as interactive in order to complete 
 the critical rendering path of the route/component (known as the "subscriber"). 
-This is handled by implementing an `isInteractive` method in each subscriber. 
-This method is passed a function that will tell you if a reporter is interactive.
+This is handled by implementing an [`isInteractive` method](https://github.com/elwayman02/jordan-hawker/blob/master/app/routes/music.js#L4-L6) 
+in each subscriber. This method is passed a function that will tell you if a reporter is interactive.
 
 ```javascript
 // routes/foo.js or components/foo-bar.js
@@ -173,7 +177,8 @@ that is considered critical for interactivity. Once `isInteractive`
 returns true, the relevant tracking events will be fired.
 
 If you expect the subscriber to render multiple instances of the same component 
-(e.g. an `#each` loop), you can pass the expected number to `didReportInteractive`:
+(e.g. an `#each` loop), you can [pass the expected number](https://github.com/elwayman02/jordan-hawker/blob/master/app/components/github-projects.js#L28-L30) 
+to `didReportInteractive`:
 
 ```javascript
 // routes/foo.js or components/foo-bar.js
