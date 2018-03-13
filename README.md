@@ -1,5 +1,5 @@
-Ember Interactivity
-===================
+![Ember Interactivity](docs/hero-logo.png)
+==========================================
 
 [![Build Status](https://travis-ci.org/elwayman02/ember-interactivity.svg?branch=master)](https://travis-ci.org/elwayman02/ember-interactivity)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-interactivity.svg)](https://emberobserver.com/addons/ember-interactivity)
