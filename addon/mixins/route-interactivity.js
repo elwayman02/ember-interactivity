@@ -72,7 +72,7 @@ export default Mixin.create(IsFastbootMixin, {
     let isInteractive = this.isInteractive ? run.bind(this, this.isInteractive) : null;
     let options = {
       isInteractive,
-      name: this.get('routeName')
+      name: this.get('fullRouteName')
     };
 
     this.set('_monitoringInteractivity', true);
@@ -108,7 +108,7 @@ export default Mixin.create(IsFastbootMixin, {
     let baseData = {
       event: `route${phase}`,
       destination: targetName,
-      routeName: this.get('routeName'),
+      routeName: this.get('fullRouteName'),
       lostVisibility: this.get('documentVisibility.lostVisibility'),
       clientTime: getTimeAsFloat()
     };
@@ -141,7 +141,7 @@ export default Mixin.create(IsFastbootMixin, {
       };
     }
 
-    let routeName = this.get('routeName');
+    let routeName = this.get('fullRouteName');
     this._markTimeline(INTERACTIVE_LABEL);
     this._sendTransitionEvent('Interactive', routeName, data);
     hasFirstTransitionCompleted = true;
@@ -170,7 +170,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @return {boolean} True if this route is the target of the current transition
    */
   _isLeafRoute(transition = this.get('_latestTransition')) {
-    return transition && transition.targetName === this.get('routeName');
+    return transition && transition.targetName === this.get('fullRouteName');
   },
 
   /**
@@ -183,7 +183,7 @@ export default Mixin.create(IsFastbootMixin, {
    * @return {string} The timeline label
    */
   _getTimelineLabel(type) {
-    return `Route ${type}: ${this.get('routeName')}`;
+    return `Route ${type}: ${this.get('fullRouteName')}`;
   },
 
   /**

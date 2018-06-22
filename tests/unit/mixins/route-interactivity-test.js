@@ -35,7 +35,7 @@ module('Unit | Mixin | route interactivity', function (hooks) {
 
   hooks.beforeEach(function () {
     this.BaseObject = EmberObject.extend(RouteInteractivityMixin, {
-      routeName: ROUTE_NAME,
+      fullRouteName: ROUTE_NAME,
       criticalComponents: CRITICAL_COMPONENTS,
       documentVisibility: VisibilityStub.create(),
       interactivity: InteractivityStub.create(),
