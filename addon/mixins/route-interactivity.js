@@ -2,7 +2,7 @@ import Ember from 'ember';
 import Mixin from '@ember/object/mixin';
 import { on } from '@ember/object/evented';
 import { assign } from '@ember/polyfills';
-import { bind, run } from '@ember/runloop';
+import { run } from '@ember/runloop';
 import { inject as injectService } from '@ember/service';
 import IsFastbootMixin from 'ember-is-fastboot/mixins/is-fastboot';
 import getConfig from 'ember-interactivity/utils/config';
@@ -69,9 +69,10 @@ export default Mixin.create(IsFastbootMixin, {
    * @private
    */
   _monitorInteractivity() {
+    let isInteractive = this.isInteractive ? run.bind(this, this.isInteractive) : null;
     let options = {
-      name: this.get('routeName'),
-      isInteractive: run.bind(this, this.isInteractive)
+      isInteractive,
+      name: this.get('routeName')
     };
 
     this.set('_monitoringInteractivity', true);
@@ -198,7 +199,7 @@ export default Mixin.create(IsFastbootMixin, {
       return;
     }
 
-    markTimeline(type, bind(this, this._getTimelineLabel));
+    markTimeline(type, run.bind(this, this._getTimelineLabel));
   },
 
   _isFeaturedDisabled(type) {

@@ -145,10 +145,12 @@ module('Unit | Mixin | route interactivity', function (hooks) {
     });
   });
 
-  test('monitorInteractivity - not monitoring', function (assert) {
+  test('_monitorInteractivity - not monitoring', function (assert) {
     assert.expect(1);
 
-    let subject = this.BaseObject.create();
+    let subject = this.BaseObject.create({
+      isInteractive() {}
+    });
     setOwner(subject, this.owner);
 
     subject._monitorInteractivity();
