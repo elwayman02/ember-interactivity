@@ -26,7 +26,7 @@
     "ember-cli-babel": "^7.1.0",
     "ember-cli-htmlbars": "^3.0.0",
     "ember-is-fastboot": "^0.1.1",
-    "ember-is-visible": "^0.1.2"
+    "ember-is-visible": "^0.2.0"
   },
   "devDependencies": {
     "@ember-decorators/babel-transforms": "^2.0.0",
@@ -51,7 +51,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^0.12.1",
     "ember-resolver": "^5.0.0",
-    "ember-sinon": "^3.0.0",
+    "ember-sinon": "^2.1.0",
     "ember-sinon-qunit": "^3.3.0",
     "ember-source": "~3.3.0",
     "ember-source-channel-url": "^1.0.1",
