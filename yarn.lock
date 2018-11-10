@@ -534,46 +534,47 @@
     ember-cli-babel "^6.6.0"
     ember-cli-version-checker "^2.1.0"
 
-"@ember-decorators/component@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/component/-/component-2.4.1.tgz#8234b271cb3bd8ce4496836a259b415236cb4d1b"
+"@ember-decorators/component@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/component/-/component-3.0.2.tgz#eef014591b9c18e97df6ee8d82ce8c9182339c31"
   dependencies:
-    "@ember-decorators/utils" "^2.4.1"
+    "@ember-decorators/utils" "^3.0.2"
     ember-cli-babel "^6.6.0"
 
-"@ember-decorators/controller@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/controller/-/controller-2.4.1.tgz#1beda355dfe534c0b68194964b2933f5207093b2"
+"@ember-decorators/controller@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/controller/-/controller-3.0.2.tgz#cd0c6c7180e7ab1c1560c09c8839f9c597682b95"
   dependencies:
-    "@ember-decorators/utils" "^2.4.1"
+    "@ember-decorators/utils" "^3.0.2"
     ember-cli-babel "^6.6.0"
 
-"@ember-decorators/data@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/data/-/data-2.4.1.tgz#c2d78df56b2d4d57647f20f712267a548486a73a"
+"@ember-decorators/data@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/data/-/data-3.0.2.tgz#f3d2c01c257119a325c45f680be36d41392b275a"
   dependencies:
-    "@ember-decorators/utils" "^2.4.1"
+    "@ember-decorators/utils" "^3.0.2"
     ember-cli-babel "^6.6.0"
 
-"@ember-decorators/object@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/object/-/object-2.4.1.tgz#9dc9291ab217619485e0b6e5d6acf94c6d9989f6"
+"@ember-decorators/object@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/object/-/object-3.0.2.tgz#85ebc17fe0d37f0e6367d15c71c70dafa9341191"
   dependencies:
-    "@ember-decorators/utils" "^2.4.1"
+    "@ember-decorators/utils" "^3.0.2"
     ember-cli-babel "^6.6.0"
     ember-compatibility-helpers "^1.0.0"
 
-"@ember-decorators/service@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/service/-/service-2.4.1.tgz#fa06510e6631c24f80de801f1ff1a2b7e2ec559d"
+"@ember-decorators/service@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/service/-/service-3.0.2.tgz#e76b1ea38e8d3328f97c4b011d4e21aabaa780a3"
   dependencies:
-    "@ember-decorators/utils" "^2.4.1"
+    "@ember-decorators/utils" "^3.0.2"
     ember-cli-babel "^6.6.0"
 
-"@ember-decorators/utils@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-2.4.1.tgz#5882575f8851d6111b486c017f75367766b24958"
+"@ember-decorators/utils@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-3.0.2.tgz#c2171684451f898d31ce77a3f44b3ffcd6b71b02"
   dependencies:
+    babel-plugin-debug-macros "^0.1.11"
     ember-cli-babel "^6.6.0"
     ember-compatibility-helpers "^1.0.0"
 
@@ -3621,15 +3622,15 @@ ember-data@^2.18.0:
     semver "^5.1.0"
     silent-error "^1.0.0"
 
-ember-decorators@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/ember-decorators/-/ember-decorators-2.4.1.tgz#922f719759e4d12053760628eb978afd716ab5b3"
+ember-decorators@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/ember-decorators/-/ember-decorators-3.0.2.tgz#edff23fba84a9bc55967b3d9891a756be3bd6f46"
   dependencies:
-    "@ember-decorators/component" "^2.4.1"
-    "@ember-decorators/controller" "^2.4.1"
-    "@ember-decorators/data" "^2.4.1"
-    "@ember-decorators/object" "^2.4.1"
-    "@ember-decorators/service" "^2.4.1"
+    "@ember-decorators/component" "^3.0.2"
+    "@ember-decorators/controller" "^3.0.2"
+    "@ember-decorators/data" "^3.0.2"
+    "@ember-decorators/object" "^3.0.2"
+    "@ember-decorators/service" "^3.0.2"
     ember-cli-babel "^6.0.0"
     semver "^5.5.0"
 
