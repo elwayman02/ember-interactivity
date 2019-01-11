@@ -29,7 +29,7 @@
     "ember-is-visible": "^0.2.0"
   },
   "devDependencies": {
-    "@ember-decorators/babel-transforms": "^2.0.0",
+    "@ember-decorators/babel-transforms": "^4.0.2",
     "broccoli-asset-rev": "^3.0.0",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~3.1.4",
