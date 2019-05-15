@@ -55,7 +55,7 @@
     "ember-sinon-qunit": "^3.3.0",
     "ember-source": "~3.3.0",
     "ember-source-channel-url": "^1.0.1",
-    "ember-try": "^1.0.0",
+    "ember-try": "^1.2.0",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^7.0.1",
     "greenkeeper-lockfile": "^1.15.1",
