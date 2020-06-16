@@ -232,7 +232,7 @@ Provide the beacon with a `beaconId` to give it a unique identifier:
 {{/if}}
 ```
 
-Each `beaconId` is appended with 'beacon:' for use in `didReportInteractive`:
+Each `beaconId` is prepended with 'beacon:' for use in `didReportInteractive`:
 
 ```javascript
 // routes/foo.js or components/foo-bar.js
