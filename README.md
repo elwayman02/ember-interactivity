@@ -1,6 +1,7 @@
 ![Ember Interactivity](docs/hero-logo.png)
 ==========================================
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/233e41f6-8b57-4f43-9622-a772edf9f244/deploy-status)](https://app.netlify.com/sites/optimistic-booth-95742f/deploys)
 [![Build Status](https://travis-ci.org/elwayman02/ember-interactivity.svg?branch=master)](https://travis-ci.org/elwayman02/ember-interactivity)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-interactivity.svg)](https://emberobserver.com/addons/ember-interactivity)
 [![Code Climate](https://codeclimate.com/github/elwayman02/ember-interactivity/badges/gpa.svg)](https://codeclimate.com/github/elwayman02/ember-interactivity)
