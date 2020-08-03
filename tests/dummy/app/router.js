@@ -1,17 +1,17 @@
 import EmberRouter from '@ember/routing/router';
-import config from './config/environment';
+import config from 'dummy/config/environment';
 import { inject as service } from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
 
-const Router = EmberRouter.extend({
-  location: config.locationType,
-  rootURL: config.rootURL,
-  metrics: service(),
+export default class Router extends EmberRouter {
+  location = config.locationType;
+  rootURL = config.rootURL;
+  @service('metrics') metrics;
 
   didTransition() {
     this._super(...arguments);
     this._trackPage();
-  },
+  }
 
   _trackPage() {
     scheduleOnce('afterRender', this, () => {
@@ -21,10 +21,8 @@ const Router = EmberRouter.extend({
       this.get('metrics').trackPage({ page, title, event: 'pageViewed' });
     });
   }
-});
+}
 
 Router.map(function() {
   this.route('docs');
 });
-
-export default Router;

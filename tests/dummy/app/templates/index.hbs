@@ -2,31 +2,23 @@
   slimHeading='Ember'
   strongHeading='Interactivity'
   byline='Latency Metrics for User-Perceived Load Times'
-  yieldMultiple=true
-  as |yieldType|
 }}
-  {{#if yieldType.isLogo}}
-    <span class='docs-hero__logo'>
-      {{docs-logo logo='ember'}}
-    </span>
-  {{else if yieldType.isBottom}}
-    <span class="badges">
-      <a href="https://travis-ci.org/elwayman02/ember-interactivity" target="_blank">
-        <img src="https://travis-ci.org/elwayman02/ember-interactivity.svg?branch=master" />
-      </a>
-      <a href="https://emberobserver.com/addons/ember-interactivity" target="_blank">
-        <img src="https://emberobserver.com/badges/ember-interactivity.svg" />
-      </a>
-      <a href="https://codeclimate.com/github/elwayman02/ember-interactivity" target="_blank">
-        <img src="https://codeclimate.com/github/elwayman02/ember-interactivity/badges/gpa.svg" />
-      </a>
-      <a href="https://greenkeeper.io/" target="_blank">
-        <img src="https://badges.greenkeeper.io/elwayman02/ember-interactivity.svg" />
-      </a>
-    </span>
+  <span class="badges">
+    <a href="https://travis-ci.org/elwayman02/ember-interactivity" target="_blank">
+      <img src="https://travis-ci.org/elwayman02/ember-interactivity.svg?branch=master" />
+    </a>
+    <a href="https://emberobserver.com/addons/ember-interactivity" target="_blank">
+      <img src="https://emberobserver.com/badges/ember-interactivity.svg" />
+    </a>
+    <a href="https://codeclimate.com/github/elwayman02/ember-interactivity" target="_blank">
+      <img src="https://codeclimate.com/github/elwayman02/ember-interactivity/badges/gpa.svg" />
+    </a>
+    <a href="https://greenkeeper.io/" target="_blank">
+      <img src="https://badges.greenkeeper.io/elwayman02/ember-interactivity.svg" />
+    </a>
+  </span>
 
-    <p class="version">Version {{app-version hideSha=true}}</p>
-  {{/if}}
+  <p class="version">Version {{app-version hideSha=true}}</p>
 {{/docs-hero}}
 
 <div class="docs-container">
