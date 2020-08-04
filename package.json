@@ -43,7 +43,7 @@
     "ember-cli-release": "1.0.0-beta.2",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
-    "ember-cli-uglify": "^2.0.0",
+    "ember-cli-uglify": "^3.0.0",
     "ember-decorators": "^2.4.1",
     "ember-disable-prototype-extensions": "^1.1.2",
     "ember-export-application-global": "^2.0.0",
